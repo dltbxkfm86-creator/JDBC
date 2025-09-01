@@ -1,0 +1,98 @@
+package com.kh.run;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class SelectRun {
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String sql = """
+						SELECT
+							   EMP_ID
+							 , EMP_NAME
+							 , EMP_NO
+							 , EMAIL
+							 , PHONE
+							 , DEPT_CODE
+							 , JOB_CODE
+							 , SAL_LEVEL
+							 , SALARY
+							 , BONUS
+							 , MANAGER_ID
+							 , HIRE_DATE
+							 , ENT_DATE
+							 , ENT_YN
+					      FROM
+					      	   EMPLOYEE
+					     ORDER
+					        BY
+					           EMP_ID DESC
+					  """;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@115.90.212.20:10000:XE"
+											  ,"PSM06"
+											  ,"PSM061234");
+			System.out.println("DB서버 접속 성공!");
+			
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				int num = rset.getInt("EMP_ID");
+				String name = rset.getString("EMP_NAME");
+				String empNo = rset.getString("EMP_NO");
+				String email = rset.getString("EMAIL");
+				int phone = rset.getInt("PHONE");
+				String dept_code = rset.getString("DEPT_CODE");
+				String job_code = rset.getString("JOB_CODE");
+				String salLevel = rset.getString("SAL_LEVEL");
+				int salary = rset.getInt("SALARY");
+				double bonus = rset.getDouble("BONUS");
+				int managerId = rset.getInt("MANAGER_ID");
+				String hireDate = rset.getString("HIRE_DATE");
+				String entDate = rset.getString("ENT_DATE");
+				String entYn = rset.getString("ENT_YN");
+				System.out.println("사원번호 : " + num + "직원명 : " + name + "주민등록번호 : " + empNo
+						+ "이메일 : " + email + "전화번호 : " + phone + "부서코드 : " + dept_code
+						+ "직급코드 : " + job_code + "급여등급 : " + salLevel + "급여 : " + salary
+						+ "보너스율 : " + bonus + "관리자사번 : " + managerId + "입사일 : " + hireDate
+						+ "퇴사일 : " + entDate + "재직여부 : " + entYn);
+			}
+			
+		} catch(ClassNotFoundException e) {
+			System.out.println("ojdbc 추가했나요?");
+			System.out.println("oracle.jdbc.driver.OracleDriver오타 없나요?");
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("jdbc:oracle:thin:@IP115.90.212.20:10000:XE 오타없나요?");
+			System.out.println("사용자 계정명 / 비밀번호가 올바른가요?");
+			System.out.println("SQL문 잘썻나요?");
+		} finally {
+			try {
+				if(rset != null && !rset.isClosed()) {
+					rset.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} 
+			try {
+				if(conn != null & !conn.isClosed()) {
+					conn.close();
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+}

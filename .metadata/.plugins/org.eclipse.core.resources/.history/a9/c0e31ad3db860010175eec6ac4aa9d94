@@ -1,0 +1,10 @@
+package com.kh.statement.controller;
+
+public class MemberController {
+
+	public void save(String userId, String userPwd, String userName, String email) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
