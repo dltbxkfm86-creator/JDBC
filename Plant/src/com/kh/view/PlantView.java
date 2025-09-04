@@ -51,7 +51,7 @@ public class PlantView {
 		System.out.println("등록일을 입력하세요");
 		String createAt = sc.nextLine();
 		
-		
+		pc.plantSave(plantId, plantName, species, wateringCycle, sunlight, createAt);
 				
 	}
 }

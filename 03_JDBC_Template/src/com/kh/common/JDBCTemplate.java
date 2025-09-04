@@ -1,10 +1,12 @@
 package com.kh.common;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class JDBCTemplate {
 
@@ -26,7 +28,9 @@ public class JDBCTemplate {
 	// DB의 연결정보를 가지고 있는 Connection객체를 생성해서 반환해주는 메소드
 	public static Connection getConnection() {
 		
+		Properties prop = new Properties();
 		try {
+			
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@115.90.212.20:10000:XE"
 														 ,"PSM06"
 													     ,"PSM061234");
