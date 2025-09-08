@@ -34,7 +34,7 @@ public class BoardService {
 		Member member = new MemberDao().findById(conn, bd.getBoardWriter());
 		if(member != null) {
 			// 3. 데이터 가공
-			int userNo =member.getUserNo();
+			int userNo = member.getUserNo();
 			Board board = new Board(0,bd.getBoardTitle(),
 								 	  bd.getBoardContent(),
 								 	  String.valueOf(userNo),

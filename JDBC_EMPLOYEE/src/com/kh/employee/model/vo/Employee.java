@@ -24,6 +24,15 @@ public class Employee {
 		
 	}
 
+	public Employee(int empId, String empName, String deptCode, String jobCode, int salary) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.deptCode = deptCode;
+		this.jobCode = jobCode;
+		this.salary = salary;
+	}
+
 	public Employee(int empId, String empName, String enpNo, String email, int phone, String deptCode, String jobCode,
 			String salLevel, int salary, double bonus, int mangerId, Date hireDate, Date entDate, char entYn) {
 		super();

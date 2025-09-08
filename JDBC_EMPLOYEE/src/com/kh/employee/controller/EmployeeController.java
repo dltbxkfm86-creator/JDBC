@@ -5,7 +5,7 @@ import java.util.List;
 import com.kh.employee.model.vo.Employee;
 
 public class EmployeeController {
-	public List<Employee> selectEmp() {
+	public List<Employee> findAll() {
 		return employees;
 	}
 }

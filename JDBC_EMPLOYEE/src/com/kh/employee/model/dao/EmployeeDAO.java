@@ -9,42 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.kh.employee.model.vo.Employee;
 
+
 public class EmployeeDAO {
-	private Properties prop = new Properties();
-	
-//	public EmployeeDao() {
-//		prop.loadFromXML(new FileInputStream("));d
-//	}
-//	
-	public List<Employee> selectEmp(Connection conn) {
-		List<Employee> employees = new ArrayList(); 
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
+
+	public List<Employee> findAll(SqlSession session, int empId, String enpName, String deptCode, String jobCode, int salary) {
 		
-		String sql = prop.getProperty("selectEmp");
 		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				Employee mEmployee = new Employee(rset.getInt("EMP_ID")
-												 ,rset.getString("EMP_NAME")
-												 ,rset.getInt("SALARY")
-												 ,rset.getString("DEPT_CODE")
-						
-						
-						
-						
-						)
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+		return session.findAll("employeeMapper.findAll");
 		
 	}
+
+
 }

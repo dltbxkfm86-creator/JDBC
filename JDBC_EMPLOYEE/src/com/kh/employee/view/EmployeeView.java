@@ -28,7 +28,7 @@ public class EmployeeView {
 			sc.nextLine();
 			
 			switch(menuNo) {
-			case 1: selectEmp(); break;
+			case 1: findAll(); break;
 //			case 2: insertBoard(); break;
 //			case 3: deleteBoard(); break;
 //			case 4: deleteBoard(); break;
@@ -40,9 +40,9 @@ public class EmployeeView {
 			}
 		}
 	}
-	private void selectEmp() {
+	private void findAll() {
 		
-		List<Employee> employees = ec.selectEmp(); 
+		List<Employee> employees = ec.findAll(); 
 		
 	}
 }
